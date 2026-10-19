@@ -24,13 +24,9 @@ export default async function AllProducts() {
             </div>
             <Link
               href="/products"
-              className="group inline-flex min-h-10 items-center gap-2 rounded-full  border border-primary-100 bg-white px-4 py-2 text-sm font-semibold text-primary-800 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-primary-400 hover:bg-primary-50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:border-primary-900 dark:bg-gray-900 dark:text-primary-300 dark:hover:border-primary-700 dark:hover:bg-primary-950/50 dark:focus-visible:ring-offset-gray-950"
+              className="inline-flex w-fit items-center gap-1 font-semibold text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
             >
-              <span>View all products</span>
-              <ArrowRight
-                aria-hidden="true"
-                className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
-              />
+              View all products <ArrowRight size={16} />
             </Link>
           </div>
         </div>
