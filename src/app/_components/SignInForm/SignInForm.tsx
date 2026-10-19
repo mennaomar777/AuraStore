@@ -22,6 +22,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { signInFormSchema, SignInFormType } from "@/schemas/auth.schema";
 import Google from "@/icons/Google.svg";
 import Facebook from "@/icons/Facebook.svg";
@@ -32,6 +33,7 @@ import { signIn } from "next-auth/react";
 import Lock from "@/icons/Lock.svg";
 import People from "@/icons/People.svg";
 import star from "@/icons/Gray-Star.svg";
+import { LoaderCircle } from "lucide-react";
 
 export function SignInForm() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -69,7 +71,7 @@ export function SignInForm() {
     }
   }
   return (
-    <Card className="w-full py-10 px-2 shadow-lg ring-0 bg-white dark:bg-dark-900 border border-transparent dark:border-dark-700">
+    <Card className="w-full rounded-3xl border border-gray-200/80 bg-white px-5 py-8 shadow-xl shadow-gray-900/5 ring-0 dark:border-dark-700 dark:bg-dark-900 sm:px-8 sm:py-10">
       <CardHeader>
         <CardTitle className="text-center capitalize text-3xl font-semibold leading-9 text-gray-800 dark:text-white">
           {" "}
@@ -154,10 +156,9 @@ export function SignInForm() {
                       Forgot password?
                     </Link>
                   </div>
-                  <Input
+                  <PasswordInput
                     {...field}
                     id="password"
-                    type="password"
                     aria-invalid={fieldState.invalid}
                     placeholder="enter your password"
                     autoComplete="current-password"
@@ -188,19 +189,23 @@ export function SignInForm() {
           </FieldGroup>
         </form>
       </CardContent>
-      <CardFooter className="border-t-0 pb-0">
-        <Field orientation="horizontal">
-          <Button
-            className="w-full shadow-lg hover:shadow-xl rounded-xl bg-primary-600 hover:bg-primary-700 text-white cursor-pointer text-lg py-6 disabled:opacity-70 disabled:cursor-not-allowed dark:hover:bg-primary-600"
-            type="submit"
-            form="sign-in-form"
-            disabled={isLoading}
-          >
-            <div className="flex justify-center items-center gap-3">
-              {isLoading ? "Signing In..." : "Sign In"}
-            </div>
-          </Button>
-        </Field>
+      <CardFooter className="border-0 bg-transparent p-0">
+        <Button
+          className="w-full cursor-pointer rounded-xl bg-primary-600 py-6 text-lg text-white shadow-lg hover:bg-primary-700 hover:shadow-xl disabled:cursor-wait disabled:opacity-70 dark:hover:bg-primary-600"
+          type="submit"
+          form="sign-in-form"
+          disabled={isLoading}
+        >
+          <span className="flex items-center justify-center gap-2">
+            {isLoading && (
+              <LoaderCircle
+                aria-hidden="true"
+                className="size-5 animate-spin"
+              />
+            )}
+            {isLoading ? "Signing In..." : "Sign In"}
+          </span>
+        </Button>
       </CardFooter>
       <div className="w-[94%] mx-auto flex justify-center items-center text-[16px] font-medium border-t-2 border-gray-100/70 dark:border-dark-700">
         {" "}

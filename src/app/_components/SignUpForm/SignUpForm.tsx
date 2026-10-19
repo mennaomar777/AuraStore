@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/field";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { signUpFormSchema, SignUpFormType } from "@/schemas/auth.schema";
 import { signUpUser } from "@/services/auth";
 import Add from "@/icons/Add.svg";
@@ -30,6 +31,7 @@ import Facebook from "@/icons/Facebook.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { LoaderCircle } from "lucide-react";
 
 export function SignUpForm() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -71,7 +73,7 @@ export function SignUpForm() {
     }
   }
   return (
-    <Card className="w-full md:max-w-[46%] py-10 px-2 shadow-lg ring-0 bg-white dark:bg-dark-900 border border-transparent dark:border-dark-700">
+    <Card className="w-full rounded-3xl border border-gray-200/80 bg-white px-5 py-8 shadow-xl shadow-gray-900/5 ring-0 dark:border-dark-700 dark:bg-dark-900 sm:px-8 sm:py-10">
       <CardHeader>
         <CardTitle className="text-center capitalize text-3xl font-semibold leading-9 text-gray-600 dark:text-white">
           {" "}
@@ -176,10 +178,9 @@ export function SignUpForm() {
                   >
                     Password*
                   </FieldLabel>
-                  <Input
+                  <PasswordInput
                     {...field}
                     id="password"
-                    type="password"
                     aria-invalid={fieldState.invalid}
                     placeholder="create a strong password"
                     autoComplete="new-password"
@@ -206,10 +207,9 @@ export function SignUpForm() {
                   >
                     Confirm Password*
                   </FieldLabel>
-                  <Input
+                  <PasswordInput
                     {...field}
                     id="rePassword"
-                    type="password"
                     aria-invalid={fieldState.invalid}
                     placeholder="confirm your password"
                     autoComplete="new-password"
@@ -303,20 +303,25 @@ export function SignUpForm() {
           </FieldGroup>
         </form>
       </CardContent>
-      <CardFooter className="border-t-0 pb-0">
-        <Field orientation="horizontal">
-          <Button
-            className="w-full rounded-xl bg-primary-600 hover:bg-primary-700 text-white cursor-pointer text-lg py-6 disabled:opacity-70 disabled:cursor-not-allowed dark:hover:bg-primary-600 shadow-lg hover:shadow-xl"
-            type="submit"
-            form="sign-up-form"
-            disabled={isLoading}
-          >
-            <div className="flex justify-center items-center gap-3">
+      <CardFooter className="border-0 bg-transparent p-0">
+        <Button
+          className="w-full cursor-pointer rounded-xl bg-primary-600 py-6 text-lg text-white shadow-lg hover:bg-primary-700 hover:shadow-xl disabled:cursor-wait disabled:opacity-70 dark:hover:bg-primary-600"
+          type="submit"
+          form="sign-up-form"
+          disabled={isLoading}
+        >
+          <span className="flex items-center justify-center gap-3">
+            {isLoading ? (
+              <LoaderCircle
+                aria-hidden="true"
+                className="size-5 animate-spin"
+              />
+            ) : (
               <Image src={Add} alt="" width={20} height={20} />
-              {isLoading ? "Creating Account..." : "Create My Account"}
-            </div>
-          </Button>
-        </Field>
+            )}
+            {isLoading ? "Creating Account..." : "Create My Account"}
+          </span>
+        </Button>
       </CardFooter>
       <div className="w-[94%] mx-auto flex justify-center items-center text-[16px] font-medium border-t-2 border-gray-100/70 dark:border-dark-700">
         {" "}

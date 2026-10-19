@@ -7,7 +7,7 @@ import Truck from "@/icons/Small-truck.svg";
 
 export default function SignIn() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-15">
+    <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-4 py-8 sm:px-6 sm:py-12 md:grid-cols-2 md:gap-10 lg:px-8 lg:py-16">
       <div className="hidden md:block">
         <div>
           <Image
@@ -51,7 +51,7 @@ export default function SignIn() {
           </div>
         </div>
       </div>
-      <div className=" ">
+      <div className="mx-auto w-full max-w-xl">
         <SignInForm />
       </div>
     </div>

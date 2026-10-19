@@ -8,8 +8,8 @@ import Vector from "@/icons/Vector.svg";
 
 export default function SignUp() {
   return (
-    <div className="md:flex justify-between gap-12 my-5  py-15">
-      <div className="md:max-w-[46%] mb-10">
+    <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-start gap-8 px-4 py-8 sm:px-6 sm:py-12 md:grid-cols-2 md:gap-10 lg:px-8 lg:py-16 xl:gap-14">
+      <div className="mb-2 md:sticky md:top-28">
         <div className="mb-2">
           <h1 className="font-bold text-4xl text-gray-600 dark:text-white mb-2">
             Welcome to <span className="text-primary-600">AuraStore</span>
@@ -96,7 +96,9 @@ export default function SignUp() {
           </p>
         </div>
       </div>
-      <SignUpForm />
+      <div className="w-full">
+        <SignUpForm />
+      </div>
     </div>
   );
 }

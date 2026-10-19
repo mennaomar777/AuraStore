@@ -20,7 +20,7 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import {
   verifyResetCodeFormSchema,
   VerifyResetCodeType,
@@ -113,10 +113,9 @@ export function VerifyResetCodeForm() {
                       size={15}
                       className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                     />
-                    <Input
+                    <PasswordInput
                       {...field}
                       id="resetCode"
-                      type="password"
                       aria-invalid={fieldState.invalid}
                       placeholder="Enter your code"
                       autoComplete="one-time-code"
