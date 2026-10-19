@@ -85,6 +85,7 @@ export default function MainNav({ categories }: { categories: Category[] }) {
             <ThemeToggle />
             <Link
               href="/wishlist"
+              prefetch={false}
               aria-label={"Wishlist, " + wishListCount + " items"}
               className="relative rounded-full p-2.5 text-gray-400 transition-colors hover:bg-gray-200/30 hover:text-red-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-red-400"
             >
@@ -98,6 +99,7 @@ export default function MainNav({ categories }: { categories: Category[] }) {
 
             <Link
               href="/cart"
+              prefetch={false}
               aria-label={"Cart, " + cartItemsCount + " items"}
               className="relative rounded-full p-2.5 text-gray-400 transition-colors hover:bg-gray-200/30 hover:text-primary-600 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-primary-400"
             >
@@ -137,6 +139,7 @@ export default function MainNav({ categories }: { categories: Category[] }) {
           <ThemeToggle />
           <Link
             href="/wishlist"
+            prefetch={false}
             aria-label={"Wishlist, " + wishListCount + " items"}
             className="relative rounded-full p-2 text-gray-600 transition hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:text-gray-300 dark:hover:bg-gray-800"
           >
@@ -149,6 +152,7 @@ export default function MainNav({ categories }: { categories: Category[] }) {
           </Link>
           <Link
             href="/cart"
+            prefetch={false}
             aria-label={"Cart, " + cartItemsCount + " items"}
             className="relative rounded-full p-2 text-gray-600 transition hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:text-gray-300 dark:hover:bg-gray-800"
           >
@@ -213,6 +217,7 @@ export default function MainNav({ categories }: { categories: Category[] }) {
           <div className="space-y-1 border-b border-gray-100 py-4 dark:border-gray-800">
             <Link
               href="/wishlist"
+              prefetch={false}
               onClick={closeMenu}
               className={mobileLinkClass}
             >
@@ -226,7 +231,12 @@ export default function MainNav({ categories }: { categories: Category[] }) {
                 </span>
               )}
             </Link>
-            <Link href="/cart" onClick={closeMenu} className={mobileLinkClass}>
+            <Link
+              href="/cart"
+              prefetch={false}
+              onClick={closeMenu}
+              className={mobileLinkClass}
+            >
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-primary-600 dark:bg-emerald-950/50">
                 <ShoppingCart size={17} />
               </span>

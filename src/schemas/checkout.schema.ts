@@ -5,8 +5,10 @@ export const checkoutSchema = z.object({
   phone: z
     .string()
     .trim()
-    .nonempty("*Please enter your phone")
-    .regex(/^01[0125]\d{8}$/, "*Enter a valid Egyptian mobile number"),
+    .regex(
+      /^(?:\+20|0)(10|11|12|15)\d{8}$/,
+      "*Only Egyptian phone numbers are allowed",
+    ),
   city: z.string().trim().nonempty("*Please enter your city"),
 });
 
