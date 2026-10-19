@@ -12,18 +12,24 @@ export async function onlinePayment(
   if (!token) {
     throw new Error("Unauthorized - no token found");
   }
-  const url = process.env.NEXTAUTH_URL;
-  const res = await fetch(
-    `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?${url}`,
-    {
-      method: "POST",
-      headers: {
-        token,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ shippingAddress: formValues }),
-    },
+  const appUrl = process.env.NEXTAUTH_URL;
+  if (!appUrl) {
+    throw new Error("NEXTAUTH_URL is not configured");
+  }
+
+  const checkoutUrl = new URL(
+    `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}`,
   );
+  checkoutUrl.searchParams.set("url", appUrl);
+
+  const res = await fetch(checkoutUrl, {
+    method: "POST",
+    headers: {
+      token,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ shippingAddress: formValues }),
+  });
   if (!res.ok) throw new Error("Failed to pay online");
   const data = await res.json();
   //   console.log(data);
